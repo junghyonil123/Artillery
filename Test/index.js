@@ -1,41 +1,3 @@
-// // const express = require("express");
-// // const app = new express();
-// // app.get("/",(req, res) =>{
-// //     res.send("헬로")
-// // });
-// // app.listen(3000);
-
-// const io = require("socket.io-client");
-// // const url = "https://komscoverse-world.kro.kr:2502"
-// // io(url, {
-// //     handshake:{
-// //         auth : {
-// //             token : "MWJjMWQyOTNiZTlmOWI5Yjo0OUYzZThTeDlJVHFnSkx1OWtKZFc5MUtnY0hwemtLVkVtcGUvTXlKNXVjPQ==",
-// //             joinToken : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiaVVuMFRoUTVrUSIsImlhdCI6MTcwMDg5NzAzMSwiZXhwIjoxNzAwODk3MDUxLCJpc3MiOiJLT01TQ08ifQ.40kcQoQsWzUhjGPfR1l_ruEMYSJKnoKW5I_41S4-wd0"
-// //         }
-// //     }
-// // })
-
-// const _url = "komscoverse-world.kro.kr:2501"
-
-// const _token = "MmRhNzRkOTg4ZjU4ODA5MzpZYXNDVzZMOFpvNjUwRVZrRnAvREFFek5PeU5tSWNtVWtYbzZ5M1JWcmtRPQ=="
-
-// const _jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiaVVuMFRoUTVrUSIsImlhdCI6MTcwMDg5NzUyNiwiZXhwIjoxNzAwODk3NTQ2LCJpc3MiOiJLT01TQ08ifQ.lOtefYaegFWCqjEBQ3sIosS6C9f6HZ9yvsmdVUU_FJQ"
-
-// function myAfterResponseHandler(requestParams, context, ee, next) {
-
-//     console.log("hello");
-//     next();
-//     const url = "https://" + _url
-//     io(url, {
-//         auth: {
-//             token: _token,
-//             joinToken: _jwt
-//         }
-//     })
-
-// }
-
 const io = require("socket.io-client");
 const crypto = require("crypto");
 
@@ -72,41 +34,7 @@ function decrypt(encryptData) {
     }
 }
 
-
-// // const _url = "komscoverse-world.kro.kr:2501";
-// let _token = "MmRhNzRkOTg4ZjU4ODA5MzpZYXNDVzZMOFpvNjUwRVZrRnAvREFFek5PeU5tSWNtVWtYbzZ5M1JWcmtRPQ==";
-// const _jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiaVVuMFRoUTVrUSIsImlhdCI6MTcwMDg5NzUyNiwiZXhwIjoxNzAwODk3NTQ2LCJpc3MiOiJLT01TQ08ifQ.lOtefYaegFWCqjEBQ3sIosS6C9f6HZ9yvsmdVUU_FJQ";
-
-function myAfterResponseHandler2(requestParams, context, ee, next){
-    console.log("hi");
-    // _token = context.scenario._sessionToken;
-    // console.log(_token);
-}
-
 function myAfterResponseHandler(requestParams, context, ee, next) {
-    // console.log("hello111111111111111111111111");
-    // console.log(requestParams.headers);
-
-    // console.log("hello2222222222222222222222");
-    // console.log(ee.vars["response"]._sessionToken);
-    
-    // console.log("3333333333333333333333333333333333333333333333333333");
-    // console.log(ee.vars["responseWorld"]._worldJoinToken);
-    // console.log(ee.vars["responseWorld"]._worldData._serverIP);
-
-
-
-
-
-
-    // console.log("hello33333333333333333333333");
-    // console.log(ee);
-
-    // console.log(requestParams.headers['sessiontoken']);
-    // console.log(requestParams.headers['_worldJoinToken']);
-    // console.log(requestParams.headers['_serverIP']);
-    
-    
     let _url = ee.vars["responseWorld"]._worldData._serverIP; // context.vars를 사용하여 변수에 접근
     let _jwt = ee.vars["responseWorld"]._worldJoinToken; // context.vars를 사용하여 변수에 접근
     let _token = ee.vars["response"]._sessionToken;
@@ -138,12 +66,6 @@ function myAfterResponseHandler(requestParams, context, ee, next) {
         }
     }
 
-    // const data = {
-    //     _event : "UserEnter",
-    //     _data : "hello"
-    // }
-
-    // socket.io 이벤트 처리
     socket.on("connect", () => {
         console.log("Socket connected");
         socket.emit("join-room", "OutsideMap");
