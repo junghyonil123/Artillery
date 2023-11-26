@@ -1,0 +1,41 @@
+
+# 무조건 되는 코드
+config:
+  target: "https://komscoverse-world.kro.kr:2502"
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 1
+      arrivalRate: 1
+      rampTo: 1
+      name: Warm up phase
+    - duration: 1
+      arrivalRate: 1
+      rampTo: 1
+      name: Ramp up load
+    - duration: 1
+      arrivalRate: 1
+      rampTo: 1
+      name: Spike phase
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+
+scenarios:
+    - engine: "socketio"
+      flow:
+      - emit:
+          channel: "connect"
+          headers:
+            handshake:
+              auth: 
+                token: "ZjBkY2ZhYmNmYjYwYTg1NzpuQWhPemtLRGhqUDFaWndKMW9DNmowUStwK0dTbEZnRSthRE1qZVJHZkpvPQ=="
+                joinToken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiaVVuMFRoUTVrUSIsImlhdCI6MTcwMDg5Njg4NywiZXhwIjoxNzAwODk2OTA3LCJpc3MiOiJLT01TQ08ifQ.bIr50iy7UKiQlCHJy6WSsi2rQ7buEBrdcCvqGlTtk2c"
+

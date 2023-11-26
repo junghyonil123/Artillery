@@ -1,0 +1,38 @@
+config:
+  target: "https://komscoverse.kro.kr"
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 1
+      arrivalRate: 1
+      rampTo: 1
+      name: Warm up phase
+  processor: "./index.js"
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+
+scenarios:
+    - flow:
+      - post:
+          url: "/app/auth/usersignin"
+          # afterResponse: "myAfterResponseHandler2"
+          capture:
+            - json: "$"
+              as: response
+      # - log: "{{response._sessionToken}}"
+      - get:
+          afterResponse: "myAfterResponseHandler"
+          url: "/app/main/public-world-join"
+          headers:
+            sessionToken: "{{response._sessionToken}}"
+          capture:
+            - json: "$"
+              as: responseWorld
