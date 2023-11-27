@@ -1,0 +1,39 @@
+config:
+  target: "https://komscoverse-admin.kro.kr"
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 3
+      arrivalRate: 100
+      rampTo: 100
+      name: Warm-up phase
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+
+scenarios:
+  - name: "Create user and log in"
+    flow:
+      - post:
+          url: "/app/auth/adminsignin"
+          json:
+            _id: "admin"
+            _pw: "admin"
+          capture:
+            json: "$"
+            as: response
+      - log: "DebugLog: {{response}}"
+      - post:
+          url: "/app/auth/admin-delete-session"
+          json:
+            _id: "admin"
+          capture:
+            json: "$"
+            as: response

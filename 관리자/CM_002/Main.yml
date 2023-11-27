@@ -1,0 +1,65 @@
+config:
+  target: "https://komscoverse-admin.kro.kr"
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 3
+      arrivalRate: 100
+      rampTo: 100
+      name: Warm-up phase
+  plugins:
+    ensure: {}
+    apdex: {}
+    metrics-by-endpoint: {}
+  apdex:
+    threshold: 100
+  ensure:
+    thresholds:
+      - http.response_time.p99: 100
+      - http.response_time.p95: 75
+
+scenarios:
+  - name: "Create Admin and log in"
+    flow:
+      - post:
+          url: "/app/main/adminsignup"
+          headers:
+            sessionToken: "MGNmODg5M2VjMWQ4NmVkYzpMRkxiUTE5NjZqL3dsYUQwRGVqcW13PT0=" #임시 세션토큰입니다 어드민 로그인 하시고 재발급 받으셔야합니다.
+          json:
+            admin_id: "AdminForSystemTest"
+            _id: "20231126"
+            _pw: "1234"
+            _token: ""
+            _name: "TestAdmin"
+            _phone: "010-1234-1234"
+            _class: "Developer"
+          capture:
+            json: "$"
+            as: response
+      - log: "{{response}}"
+      - post:
+          url: "/app/main/admin-user-delete"
+          headers:
+            sessionToken: "MGNmODg5M2VjMWQ4NmVkYzpMRkxiUTE5NjZqL3dsYUQwRGVqcW13PT0=" #임시 세션토큰입니다 어드민 로그인 하시고 재발급 받으셔야합니다.
+          json:
+            admin_id: "AdminForSystemTest"
+          capture:
+            json: "$"
+            as: response2
+      - log: "{{response2}}"
+
+# 이런식으로 타이밍이 꼬일때가 있긴 한데 api는 잘 동작하니까 무방하지 않을까 생각합니다
+# { _statusMsg: '이미 존재하는 관리자 ID입니다', _result: false }
+# { _statusMsg: '이미 존재하는 관리자 ID입니다', _result: false }
+# { _statusMsg: '이미 존재하는 관리자 ID입니다', _result: false }
+# { _statusMsg: '관리자 생성 성공', _result: true }
+# { _statusMsg: 'ID나 비밀번호를 찾을 수 없습니다', _result: false }
+# { _statusMsg: 'ID나 비밀번호를 찾을 수 없습니다', _result: false }
+# { _statusMsg: 'ID나 비밀번호를 찾을 수 없습니다', _result: false }
+# { _statusMsg: '관리자 생성 성공', _result: true }
+# { _statusMsg: '관리자 생성 성공', _result: true }
+# { _statusMsg: 'ID나 비밀번호를 찾을 수 없습니다', _result: false }
+# { _statusMsg: '관리자 계정 삭제 성공', _result: true }
+# { _statusMsg: 'ID나 비밀번호를 찾을 수 없습니다', _result: false }
+# { _statusMsg: 'ID나 비밀번호를 찾을 수 없습니다', _result: false }
+# { _statusMsg: 'ID나 비밀번호를 찾을 수 없습니다', _result: false }

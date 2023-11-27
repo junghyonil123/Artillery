@@ -19,17 +19,18 @@ config:
       - http.response_time.p95: 75
 
 scenarios:
-    - flow:
+    - name: "Create user and log in"
+      flow:
       - post:
           url: "/app/auth/usersignin"
           capture:
             - json: "$"
               as: response
       - get:
-          url: "/app/auth/admin-control"
+          url: "/app/main/public-world-join"
           headers:
             sessionToken: "{{response._sessionToken}}"
           capture:
             - json: "$"
-              as: data_response
-      - log: "{{data_response}}"
+              as: responseWorld
+      - log: "DebugLog : {{responseWorld}}"

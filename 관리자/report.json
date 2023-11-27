@@ -1,0 +1,252 @@
+{
+  "aggregate": {
+    "counters": {
+      "vusers.created_by_name.Create Admin and log in": 300,
+      "vusers.created": 300,
+      "http.requests": 300,
+      "http.codes.404": 300,
+      "http.responses": 300,
+      "http.downloaded_bytes": 48000,
+      "apdex.satisfied": 272,
+      "apdex.tolerated": 28,
+      "apdex.frustrated": 0,
+      "plugins.metrics-by-endpoint./app/auth/employeeList.codes.404": 300,
+      "errors.Failed capture or match": 300,
+      "vusers.failed": 300
+    },
+    "rates": {
+      "http.request_rate": 111
+    },
+    "firstCounterAt": 1701009158088,
+    "firstHistogramAt": 1701009158147,
+    "lastCounterAt": 1701009161659,
+    "lastHistogramAt": 1701009161659,
+    "firstMetricAt": 1701009158088,
+    "lastMetricAt": 1701009161659,
+    "period": 1701009160000,
+    "summaries": {
+      "http.response_time": {
+        "min": 4,
+        "max": 57,
+        "count": 300,
+        "mean": 10.6,
+        "p50": 6,
+        "median": 6,
+        "p75": 8.9,
+        "p90": 23.8,
+        "p95": 37,
+        "p99": 50.9,
+        "p999": 54.1
+      },
+      "plugins.metrics-by-endpoint.response_time./app/auth/employeeList": {
+        "min": 4,
+        "max": 57,
+        "count": 300,
+        "mean": 10.6,
+        "p50": 6,
+        "median": 6,
+        "p75": 8.9,
+        "p90": 23.8,
+        "p95": 37,
+        "p99": 50.9,
+        "p999": 54.1
+      }
+    },
+    "histograms": {
+      "http.response_time": {
+        "min": 4,
+        "max": 57,
+        "count": 300,
+        "mean": 10.6,
+        "p50": 6,
+        "median": 6,
+        "p75": 8.9,
+        "p90": 23.8,
+        "p95": 37,
+        "p99": 50.9,
+        "p999": 54.1
+      },
+      "plugins.metrics-by-endpoint.response_time./app/auth/employeeList": {
+        "min": 4,
+        "max": 57,
+        "count": 300,
+        "mean": 10.6,
+        "p50": 6,
+        "median": 6,
+        "p75": 8.9,
+        "p90": 23.8,
+        "p95": 37,
+        "p99": 50.9,
+        "p999": 54.1
+      }
+    }
+  },
+  "intermediate": [
+    {
+      "counters": {
+        "vusers.created_by_name.Create Admin and log in": 163,
+        "vusers.created": 163,
+        "http.requests": 163,
+        "http.codes.404": 160,
+        "http.responses": 160,
+        "http.downloaded_bytes": 25600,
+        "apdex.satisfied": 148,
+        "apdex.tolerated": 12,
+        "apdex.frustrated": 0,
+        "plugins.metrics-by-endpoint./app/auth/employeeList.codes.404": 160,
+        "errors.Failed capture or match": 160,
+        "vusers.failed": 160
+      },
+      "rates": {
+        "http.request_rate": 111
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1701009158088,
+      "firstHistogramAt": 1701009158147,
+      "lastCounterAt": 1701009159986,
+      "lastHistogramAt": 1701009159976,
+      "firstMetricAt": 1701009158088,
+      "lastMetricAt": 1701009159986,
+      "period": "1701009150000",
+      "summaries": {
+        "http.response_time": {
+          "min": 4,
+          "max": 51,
+          "count": 160,
+          "mean": 9.4,
+          "p50": 6,
+          "median": 6,
+          "p75": 7.9,
+          "p90": 16,
+          "p95": 34.1,
+          "p99": 47.9,
+          "p999": 49.9
+        },
+        "plugins.metrics-by-endpoint.response_time./app/auth/employeeList": {
+          "min": 4,
+          "max": 51,
+          "count": 160,
+          "mean": 9.4,
+          "p50": 6,
+          "median": 6,
+          "p75": 7.9,
+          "p90": 16,
+          "p95": 34.1,
+          "p99": 47.9,
+          "p999": 49.9
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 4,
+          "max": 51,
+          "count": 160,
+          "mean": 9.4,
+          "p50": 6,
+          "median": 6,
+          "p75": 7.9,
+          "p90": 16,
+          "p95": 34.1,
+          "p99": 47.9,
+          "p999": 49.9
+        },
+        "plugins.metrics-by-endpoint.response_time./app/auth/employeeList": {
+          "min": 4,
+          "max": 51,
+          "count": 160,
+          "mean": 9.4,
+          "p50": 6,
+          "median": 6,
+          "p75": 7.9,
+          "p90": 16,
+          "p95": 34.1,
+          "p99": 47.9,
+          "p999": 49.9
+        }
+      }
+    },
+    {
+      "counters": {
+        "vusers.created_by_name.Create Admin and log in": 137,
+        "vusers.created": 137,
+        "http.requests": 137,
+        "http.codes.404": 140,
+        "http.responses": 140,
+        "http.downloaded_bytes": 22400,
+        "apdex.satisfied": 124,
+        "apdex.tolerated": 16,
+        "apdex.frustrated": 0,
+        "plugins.metrics-by-endpoint./app/auth/employeeList.codes.404": 140,
+        "errors.Failed capture or match": 140,
+        "vusers.failed": 140
+      },
+      "rates": {
+        "http.request_rate": 111
+      },
+      "http.request_rate": null,
+      "firstCounterAt": 1701009160000,
+      "firstHistogramAt": 1701009160002,
+      "lastCounterAt": 1701009161659,
+      "lastHistogramAt": 1701009161659,
+      "firstMetricAt": 1701009160000,
+      "lastMetricAt": 1701009161659,
+      "period": "1701009160000",
+      "summaries": {
+        "http.response_time": {
+          "min": 4,
+          "max": 57,
+          "count": 140,
+          "mean": 11.9,
+          "p50": 6,
+          "median": 6,
+          "p75": 13.1,
+          "p90": 27.9,
+          "p95": 40.9,
+          "p99": 50.9,
+          "p999": 54.1
+        },
+        "plugins.metrics-by-endpoint.response_time./app/auth/employeeList": {
+          "min": 4,
+          "max": 57,
+          "count": 140,
+          "mean": 11.9,
+          "p50": 6,
+          "median": 6,
+          "p75": 13.1,
+          "p90": 27.9,
+          "p95": 40.9,
+          "p99": 50.9,
+          "p999": 54.1
+        }
+      },
+      "histograms": {
+        "http.response_time": {
+          "min": 4,
+          "max": 57,
+          "count": 140,
+          "mean": 11.9,
+          "p50": 6,
+          "median": 6,
+          "p75": 13.1,
+          "p90": 27.9,
+          "p95": 40.9,
+          "p99": 50.9,
+          "p999": 54.1
+        },
+        "plugins.metrics-by-endpoint.response_time./app/auth/employeeList": {
+          "min": 4,
+          "max": 57,
+          "count": 140,
+          "mean": 11.9,
+          "p50": 6,
+          "median": 6,
+          "p75": 13.1,
+          "p90": 27.9,
+          "p95": 40.9,
+          "p99": 50.9,
+          "p999": 54.1
+        }
+      }
+    }
+  ]
+}

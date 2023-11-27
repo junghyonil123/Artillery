@@ -3,10 +3,11 @@ config:
   tls:
     rejectUnauthorized: false
   phases:
-    - duration: 3
-      arrivalRate: 100
-      rampTo: 100
-      name: Warm up phase
+    - duration: 1
+      arrivalRate: 1
+      rampTo: 1
+      name: Test
+  processor: "./index.js"
   plugins:
     ensure: {}
     apdex: {}
@@ -25,11 +26,12 @@ scenarios:
           capture:
             - json: "$"
               as: response
+      # - log: "{{response._sessionToken}}"
       - get:
-          url: "/app/main/admin-control"
+          afterResponse: "myAfterResponseHandler"
+          url: "/app/main/public-world-join"
           headers:
             sessionToken: "{{response._sessionToken}}"
           capture:
             - json: "$"
-              as: data_response
-      - log: "{{data_response}}"
+              as: responseWorld

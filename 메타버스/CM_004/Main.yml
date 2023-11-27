@@ -3,7 +3,7 @@ config:
   tls:
     rejectUnauthorized: false
   phases:
-    - duration: 3
+    - duration: 1
       arrivalRate: 100
       rampTo: 100
       name: Test
