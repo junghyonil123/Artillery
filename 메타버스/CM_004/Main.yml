@@ -1,11 +1,11 @@
 config:
-  target: "https://komscoverse.kro.kr"
+  target: "https://metaspace.komsco.com"
   tls:
     rejectUnauthorized: false
   phases:
     - duration: 1
-      arrivalRate: 100
-      rampTo: 100
+      arrivalRate: 199
+      rampTo: 199
       name: Test
   processor: "./index.js"
   plugins:

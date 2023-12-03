@@ -2,6 +2,7 @@ const io = require("socket.io-client");
 const crypto = require("crypto");
 const { stringify } = require("querystring");
 const { x } = require("joi");
+const { log } = require("console");
 
 const ivLength = 8;
 const encryptionType = 'aes-256-cbc';
@@ -60,9 +61,11 @@ function myAfterResponseHandler(requestParams, context, ee,dd, next) {
             gender : "Female",
             avatarCode : 10,
             nickName : "\u3141\u3141",
-            currentMap : "OutsideMap"
+            // currentMap : "OutsideMap" // 야외맵가려면 켜야 함
+            currentMap : "Olotdium"
         },
-        pos:  [-18.6979 + cnt , 1.745331, -16.7807]
+
+        pos:  [0 + Math.random() * 10 , 0, 0 + Math.random() * 10]
     }
 
     const userData = {
@@ -70,19 +73,40 @@ function myAfterResponseHandler(requestParams, context, ee,dd, next) {
         _data : JSON.stringify(PlayerModel)
     }
 
+
+    intervalId = setInterval(() => {
+        moveData = {
+            userID : id,
+            playerState : "Idle",
+            playerStateValue : 0,
+            pos:[0 + Math.random() * 0.3 , 0, 0 + Math.random() * 0.3],
+            rotation:[0,0,0,1]
+        }
+
+        let moveDataDto = {
+            _event : "UserMove",
+            _data : JSON.stringify(moveData)
+        }
+
+        socket.emit("broadcast", JSON.stringify(moveDataDto));
+        // console,log(JSON.stringify(moveDataDto));
+    }, 25); // 0.025초(25ms) 간격으로 함수를 실행합니다.
+
     socket.on("connect", () => {
         console.log("Socket connected");
-        socket.emit("join-room", "OutsideMap");
-
+        socket.emit("join-room", "Olotdium");
+        // socket.emit("join-room", "OutsideMap"); // 야외맵가려면 켜야 함
         socket.emit("broadcast", JSON.stringify(userData));
-        
-        socket.on("UserEnter", (_data) =>{
+        setTimeout(function () {
+            clearInterval(intervalId); // 10분 후에 반복을 중지합니다.
             return next();
-        });
+        }, 600000); // 10분 = 600,000ms
     });
+    
 
 }
 
+   
 
 module.exports = {
     myAfterResponseHandler,
